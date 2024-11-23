@@ -1,4 +1,4 @@
-package com.ouaskanas.educonnect.Dao;
+package com.ouaskanas.educonnect.Dao.Entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

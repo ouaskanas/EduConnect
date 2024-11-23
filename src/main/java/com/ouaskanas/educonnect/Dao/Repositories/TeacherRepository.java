@@ -1,4 +1,9 @@
 package com.ouaskanas.educonnect.Dao.Repositories;
 
-public interface TeacherRepository {
+import com.ouaskanas.educonnect.Dao.Entities.Teacher;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface TeacherRepository extends JpaRepository<Teacher, Long> {
 }

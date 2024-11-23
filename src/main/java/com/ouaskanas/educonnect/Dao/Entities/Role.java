@@ -1,4 +1,4 @@
-package com.ouaskanas.educonnect.Dao;
+package com.ouaskanas.educonnect.Dao.Entities;
 
 public enum Role {
     ADMIN,

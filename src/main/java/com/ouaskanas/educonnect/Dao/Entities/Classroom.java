@@ -1,4 +1,4 @@
-package com.ouaskanas.educonnect.Dao;
+package com.ouaskanas.educonnect.Dao.Entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,11 +16,14 @@ import java.util.List;
 public class Classroom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int classroom_id;
+    private long classroom_id;
     private String name;
     @ManyToMany
     private List<Student> student;
 
-    @OneToMany
+    @ManyToOne
     private Teacher teacher;
+
+    @OneToMany
+    private List<Post> posts;
 }

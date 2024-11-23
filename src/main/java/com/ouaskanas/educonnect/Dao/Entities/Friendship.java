@@ -1,12 +1,10 @@
-package com.ouaskanas.educonnect.Dao;
+package com.ouaskanas.educonnect.Dao.Entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.List;
 
 @Entity
 @Setter
