@@ -18,6 +18,7 @@ public class Classroom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long classroom_id;
     private String name;
+
     @ManyToMany
     private List<Student> student;
 

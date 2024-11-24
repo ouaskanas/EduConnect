@@ -9,12 +9,10 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long user_id;
