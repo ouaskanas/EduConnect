@@ -1,9 +1,13 @@
 package com.ouaskanas.educonnect.Web;
 
 import com.ouaskanas.educonnect.Dao.Entities.Post;
+import com.ouaskanas.educonnect.Dao.Repositories.PostRepository;
 import com.ouaskanas.educonnect.Dto.PostDto;
 import com.ouaskanas.educonnect.Service.Manager.PostManager;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +17,8 @@ import java.util.List;
 public class PostController {
     @Autowired
     private PostManager postManager;
+    @Autowired
+    private PostRepository postRepository;
 
     @GetMapping("/allposts")
     public List<Post> getAllPosts(){
@@ -25,21 +31,27 @@ public class PostController {
     }
 
     @PostMapping("/createpost")
-    public String createPost(@RequestBody PostDto post){
+    public ResponseEntity<PostDto> createPost(@RequestBody PostDto post){
         postManager.addPost(post);
-        return "redirect:/post/allposts";
+        return ResponseEntity.status(HttpStatus.OK).body(post);
     }
 
     @PutMapping("/alterpost/{id}")
-    public String alterPost(@PathVariable int id, @RequestBody PostDto post){
+    public ResponseEntity<PostDto> alterPost(@PathVariable long id, @RequestBody PostDto post){
+        if(!postRepository.existsById(id)){
+            return ResponseEntity.notFound().build();
+        }
         postManager.updatePost(id, post);
-        return "redirect::/api/v1/post/"+id;
+        return ResponseEntity.status(HttpStatus.OK).body(post);
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deletePost(@PathVariable int id){
+    public ResponseEntity<String> deletePost(@PathVariable long id){
+        if(!postRepository.existsById(id)){
+            return ResponseEntity.notFound().build();
+        }
         postManager.deletePost(id);
-        return "redirect:/post/allposts";
+        return ResponseEntity.status(HttpStatus.OK).body("Successfully deleted post");
     }
 
     @GetMapping("/getpost/{title}")
