@@ -41,4 +41,9 @@ public class PostController {
         postManager.deletePost(id);
         return "redirect:/post/allposts";
     }
+
+    @GetMapping("/getpost/{title}")
+    public Post getPostByTitle(@PathVariable String title){
+        return postManager.getPostByTitle(title);
+    }
 }

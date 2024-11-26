@@ -1,23 +1,22 @@
-package com.ouaskanas.educonnect.Service.ServiceImpl;
+package com.ouaskanas.educonnect.Service.Service;
 
 import com.ouaskanas.educonnect.Dao.Entities.Post;
 import com.ouaskanas.educonnect.Dao.Repositories.PostRepository;
 import com.ouaskanas.educonnect.Dto.Mappers.PostMapper;
 import com.ouaskanas.educonnect.Dto.PostDto;
 import com.ouaskanas.educonnect.Service.Manager.PostManager;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class PostServiceImpl implements PostManager {
+public class PostService implements PostManager {
 
     private final PostRepository postRepository;
 
 
     private PostMapper postMapper;
 
-    public PostServiceImpl(PostRepository postRepository) {
+    public PostService(PostRepository postRepository) {
         this.postRepository = postRepository;
     }
 
@@ -36,7 +35,7 @@ public class PostServiceImpl implements PostManager {
         var post = postRepository.findById(id);
         postRepository.deleteById(id);
     }
-
+    //must add author
     @Override
     public Post addPost(PostDto dto) {
         Post post = postMapper.ToEntity(dto);

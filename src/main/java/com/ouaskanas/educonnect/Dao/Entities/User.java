@@ -1,10 +1,9 @@
 package com.ouaskanas.educonnect.Dao.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -12,6 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Builder
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,5 +20,12 @@ public class User {
     private String lastname;
     private String email;
     private String password;
+    @Enumerated(EnumType.STRING)
     private Role role;
+    @ManyToOne
+    private Classroom classroom;
+    @ManyToMany
+    private List<Friendship> friendships;
+    @OneToMany
+    private List<Post> post;
 }

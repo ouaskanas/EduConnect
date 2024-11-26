@@ -5,26 +5,21 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class Post {
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long post_Id;
-    private String title;
-    private String content;
+    private long comment_id;
+    private String comment;
+    @ManyToOne
+    private Post post;
     @ManyToOne
     private User author;
-    @ManyToOne
-    private Classroom classroom;
-    @OneToMany
-    private List<Comment> commentList;
-    private boolean shared;
     private LocalDateTime createdAt = LocalDateTime.now();
 }

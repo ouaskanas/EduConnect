@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -12,5 +14,6 @@ import lombok.Setter;
 public class PostDto {
     private String title;
     private String content;
+    private long author_id;
     private boolean shared;
 }
