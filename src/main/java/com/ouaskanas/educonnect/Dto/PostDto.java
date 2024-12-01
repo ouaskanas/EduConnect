@@ -15,5 +15,6 @@ public class PostDto {
     private String title;
     private String content;
     private long author_id;
+    private long classroom_id;
     private boolean shared;
 }

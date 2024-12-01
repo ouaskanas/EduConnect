@@ -30,7 +30,7 @@ public class PostController {
         return postManager.getPost(id);
     }
 
-    @PostMapping("/createpost")
+    @PostMapping("/createpost/")
     public ResponseEntity<PostDto> createPost(@RequestBody PostDto post){
         postManager.addPost(post);
         return ResponseEntity.status(HttpStatus.OK).body(post);

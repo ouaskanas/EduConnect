@@ -12,12 +12,15 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 @Builder
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "dtype", discriminatorType = DiscriminatorType.STRING)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long user_id;
     private String firstname;
     private String lastname;
+    @Column(unique = true)
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)

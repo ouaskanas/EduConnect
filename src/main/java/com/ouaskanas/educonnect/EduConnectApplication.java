@@ -1,7 +1,11 @@
 package com.ouaskanas.educonnect;
 
+import com.ouaskanas.educonnect.Dao.Entities.User;
+import com.ouaskanas.educonnect.Dao.Repositories.UserRepository;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class EduConnectApplication {
@@ -10,4 +14,9 @@ public class EduConnectApplication {
         SpringApplication.run(EduConnectApplication.class, args);
     }
 
+    @Bean
+    public CommandLineRunner commandLineRunner(UserRepository userRepository) {
+        return args -> {
+        };
+    }
 }

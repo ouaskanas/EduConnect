@@ -17,4 +17,5 @@ public class Friendship {
     private User student;
     @ManyToOne
     private User friend;
+    private FriendShipStatus status;
 }

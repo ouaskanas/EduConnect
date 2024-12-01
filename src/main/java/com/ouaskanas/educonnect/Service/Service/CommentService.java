@@ -5,12 +5,17 @@ import com.ouaskanas.educonnect.Dao.Entities.Post;
 import com.ouaskanas.educonnect.Dao.Repositories.CommentRepository;
 import com.ouaskanas.educonnect.Dao.Repositories.PostRepository;
 import com.ouaskanas.educonnect.Service.Manager.CommentManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class CommentService implements CommentManager {
 
+    @Autowired
     private PostRepository postRepository;
+
+    @Autowired
     private CommentRepository commentRepository;
 
 

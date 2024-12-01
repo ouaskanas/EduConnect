@@ -4,6 +4,7 @@ import com.ouaskanas.educonnect.Dao.Entities.Comment;
 import com.ouaskanas.educonnect.Dao.Repositories.CommentRepository;
 import com.ouaskanas.educonnect.Dao.Repositories.PostRepository;
 import com.ouaskanas.educonnect.Service.Manager.CommentManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +15,11 @@ import java.util.List;
 @RequestMapping("api/v1/comment")
 public class CommentController {
 
+    @Autowired
     private final PostRepository postRepository;
+    @Autowired
     private final CommentRepository commentRepository;
+    @Autowired
     private CommentManager commentManager;
 
     public CommentController(PostRepository postRepository, CommentRepository commentRepository) {

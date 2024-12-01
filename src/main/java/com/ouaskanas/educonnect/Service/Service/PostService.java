@@ -5,19 +5,22 @@ import com.ouaskanas.educonnect.Dao.Repositories.PostRepository;
 import com.ouaskanas.educonnect.Dto.Mappers.PostMapper;
 import com.ouaskanas.educonnect.Dto.PostDto;
 import com.ouaskanas.educonnect.Service.Manager.PostManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 public class PostService implements PostManager {
 
+    @Autowired
     private final PostRepository postRepository;
 
-
-    private PostMapper postMapper;
+    @Autowired
+    private final PostMapper postMapper;
 
     public PostService(PostRepository postRepository) {
         this.postRepository = postRepository;
+        this.postMapper = new PostMapper();
     }
 
     @Override
