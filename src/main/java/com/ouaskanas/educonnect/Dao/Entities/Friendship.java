@@ -17,5 +17,6 @@ public class Friendship {
     private User student;
     @ManyToOne
     private User friend;
+    @Enumerated(EnumType.STRING)
     private FriendShipStatus status;
 }

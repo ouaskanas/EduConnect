@@ -26,6 +26,7 @@ public class FriendshipService implements FrienshipManager {
         return user.getFriendships();
     }
 
+
     @Override
     public Friendship sendFriendShipRequest(long user_id, long friend_id) {
         Friendship friendship = Friendship.builder()

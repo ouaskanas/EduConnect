@@ -1,32 +1,1 @@
-package com.ouaskanas.educonnect.Web;
-
-import com.ouaskanas.educonnect.Dao.Entities.Friendship;
-import com.ouaskanas.educonnect.Service.Service.FriendshipService;
-import org.apache.coyote.Response;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
-@RestController
-@RequestMapping("/api/v1/friendship")
-public class FriendshipController {
-
-    @Autowired
-    private FriendshipService friendshipService;
-
-    @GetMapping("/friendshiplist")
-    public List<Friendship> getFriendshipList(){
-        //AuthenticationPrincipals
-        return List.of();
-    }
-
-//    @PostMapping("/sendfriendship")
-//    public ResponseEntity<Friendship> sendFriendship(@RequestBody ){
-//
-//        return null;
-//    }
-
-
-}
+package com.ouaskanas.educonnect.Web;import com.ouaskanas.educonnect.Dao.Entities.FriendShipStatus;import com.ouaskanas.educonnect.Dao.Entities.Friendship;import com.ouaskanas.educonnect.Dao.Repositories.FriendshipRepository;import com.ouaskanas.educonnect.Dao.Repositories.UserRepository;import com.ouaskanas.educonnect.Service.Service.FriendshipService;import org.apache.coyote.Response;import org.springframework.beans.factory.annotation.Autowired;import org.springframework.http.HttpStatus;import org.springframework.http.ResponseEntity;import org.springframework.web.bind.annotation.*;import java.util.List;@RestController@RequestMapping("/api/v1/friendship")public class FriendshipController {    @Autowired    private FriendshipService friendshipService;    @Autowired    private UserRepository userRepository;    @Autowired    private FriendshipRepository friendshipRepository;    @GetMapping("/friendshiplist")    public List<Friendship> getFriendshipList(long user_id){        //todo:authentication principals         List<Friendship> friendships = friendshipService.friendshipListforUser(user_id);        return friendships;    }    @GetMapping("/pendinglist")    public List<Friendship> getPendingList(long user_id){        List<Friendship> friendships =friendshipService.friendshipListforUser(user_id);        for(Friendship friendship:friendships){            if(friendship.getStatus() ==FriendShipStatus.PENDING){                return List.of(friendship);            };            return null;        }        return null;    }    @PostMapping("/sendfriendship")    public ResponseEntity<Friendship> sendFriendship(@RequestBody long friend_id) {        long user_id = 0; //authentication principals        try {            Friendship friendship = friendshipService.sendFriendShipRequest(user_id, friend_id);            return ResponseEntity.status(HttpStatus.CREATED).body(friendship);        } catch (Exception e) {            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);        }    }    @PutMapping("/acceptfriendship")    public ResponseEntity<Friendship> addFriendship(@RequestBody long friendship_id) {         if(!friendshipRepository.existsById(friendship_id)){             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);         }         Friendship friendship = friendshipService.acceptFriendshipRequest(friendship_id);         return ResponseEntity.status(HttpStatus.OK).body(friendship);    }    @PutMapping("/declinefriendship")    public ResponseEntity<Friendship> declineFriendship(@RequestBody long friendship_id) {        Friendship friendship = friendshipRepository.findById(friendship_id).get();        friendship.setStatus(FriendShipStatus.DECLINED);        friendshipService.declineFriendshipRequest(friendship_id);        return ResponseEntity.status(HttpStatus.OK).body(friendship);    }}
