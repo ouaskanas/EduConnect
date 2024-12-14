@@ -1,4 +1,4 @@
-package com.ouaskanas.educonnect.Dto.Mappers;
+package com.ouaskanas.educonnect.Mappers;
 
 import com.ouaskanas.educonnect.Dao.Entities.Classroom;
 import com.ouaskanas.educonnect.Dao.Entities.Post;

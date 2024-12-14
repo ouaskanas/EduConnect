@@ -6,7 +6,7 @@ import com.ouaskanas.educonnect.Dao.Entities.User;
 import com.ouaskanas.educonnect.Dao.Repositories.ClassroomRepository;
 import com.ouaskanas.educonnect.Dao.Repositories.UserRepository;
 import com.ouaskanas.educonnect.Dto.ClassroomDto;
-import com.ouaskanas.educonnect.Dto.Mappers.ClassroomMapper;
+import com.ouaskanas.educonnect.Mappers.ClassroomMapper;
 import com.ouaskanas.educonnect.Service.Manager.ClassroomManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

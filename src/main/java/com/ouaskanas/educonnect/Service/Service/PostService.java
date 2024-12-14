@@ -2,7 +2,7 @@ package com.ouaskanas.educonnect.Service.Service;
 
 import com.ouaskanas.educonnect.Dao.Entities.Post;
 import com.ouaskanas.educonnect.Dao.Repositories.PostRepository;
-import com.ouaskanas.educonnect.Dto.Mappers.PostMapper;
+import com.ouaskanas.educonnect.Mappers.PostMapper;
 import com.ouaskanas.educonnect.Dto.PostDto;
 import com.ouaskanas.educonnect.Service.Manager.PostManager;
 import org.springframework.beans.factory.annotation.Autowired;
