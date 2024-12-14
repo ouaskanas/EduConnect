@@ -3,18 +3,16 @@ package com.ouaskanas.educonnect.Mappers;
 import com.ouaskanas.educonnect.Dao.Entities.Classroom;
 import com.ouaskanas.educonnect.Dao.Entities.Post;
 import com.ouaskanas.educonnect.Dao.Entities.User;
-import com.ouaskanas.educonnect.Dao.Repositories.ClassroomRepository;
 import com.ouaskanas.educonnect.Dao.Repositories.PostRepository;
 import com.ouaskanas.educonnect.Dao.Repositories.UserRepository;
 import com.ouaskanas.educonnect.Dto.ClassroomDto;
-import com.ouaskanas.educonnect.Dto.PostDto;
-import org.mapstruct.Mapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 
-@Mapper(componentModel = "spring")
+@Component
 public class ClassroomMapper {
 
     @Autowired
