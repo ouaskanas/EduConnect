@@ -1,6 +1,7 @@
 package com.ouaskanas.educonnect.Service.Manager;
 
 import com.ouaskanas.educonnect.Dao.Entities.Classroom;
+import com.ouaskanas.educonnect.Dao.Entities.User;
 import com.ouaskanas.educonnect.Dto.ClassroomDto;
 
 import java.util.List;
@@ -12,4 +13,6 @@ public interface ClassroomManager {
     public Classroom addStudentToclassroom(long classroom_id, long student_id);
     public Classroom deleteStudentfromClassroom(long classroom_id, long student_id);
     public void deleteClassroom(long id);
+    public List<User> GetClassroomStudents(long classroom_id);
+    public User GetClassroomTeacher(long classroom_id);
 }

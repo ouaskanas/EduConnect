@@ -11,6 +11,7 @@ import com.ouaskanas.educonnect.Service.Manager.ClassroomManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class ClassroomService implements ClassroomManager {
@@ -21,6 +22,8 @@ public class ClassroomService implements ClassroomManager {
     private UserRepository userRepository;
     @Autowired
     private ClassroomMapper classroomMapper;
+    @Autowired
+    private UserService userService;
 
     public ClassroomService(ClassroomRepository classroomRepository) {
         this.classroomRepository = classroomRepository;
@@ -62,6 +65,29 @@ public class ClassroomService implements ClassroomManager {
         return classroomRepository.save(classroom);
     }
 
+    @Override
+    public List<User> GetClassroomStudents(long classroom_id) {
+        if(!classroomRepository.existsById(classroom_id)){  return null; }
+        List<User> students = userService.getAllStudents();
+        List<User> classroomStudents = new ArrayList<>();
+        if(students.isEmpty()){ return null; }
+        for(User user : students){
+            if(user.getClassroom() == classroomRepository.findById(classroom_id).get())
+                classroomStudents.add(user);
+        }
+        return classroomStudents;
+    }
+
+    @Override
+    public User GetClassroomTeacher(long classroom_id){
+        if(!classroomRepository.existsById(classroom_id)){  return null; }
+        List<User> teachers = userService.getAllTeachers();
+        for( User user : teachers){
+            if(user.getClassroom() == classroomRepository.findById(classroom_id).get())
+                return user;
+        }
+        return null;
+    }
     @Override
     public void deleteClassroom(long id) {
         classroomRepository.deleteById(id);

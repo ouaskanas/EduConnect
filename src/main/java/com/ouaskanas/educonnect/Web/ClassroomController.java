@@ -1,6 +1,7 @@
 package com.ouaskanas.educonnect.Web;
 
 import com.ouaskanas.educonnect.Dao.Entities.Classroom;
+import com.ouaskanas.educonnect.Dao.Entities.User;
 import com.ouaskanas.educonnect.Dto.ClassroomDto;
 import com.ouaskanas.educonnect.Service.Service.ClassroomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,17 @@ public class ClassroomController {
     @GetMapping("/{id}")
     public Classroom getClassroom(@PathVariable long id) {
         return classroomService.getClassroom(id);
+    }
+
+    @GetMapping("/{classroom_id}/students")
+    public List<User> getStudents(@PathVariable long classroom_id) {
+        return classroomService.GetClassroomStudents(classroom_id);
+    }
+
+    @GetMapping("/{classroom_id}/teacher")
+    public ResponseEntity<User> getTeacher(@PathVariable long classroom_id) {
+        if(classroomService.GetClassroomTeacher(classroom_id) == null) { return ResponseEntity.notFound().build(); }
+        return new ResponseEntity<>(classroomService.GetClassroomTeacher(classroom_id), HttpStatus.OK);
     }
 
     @PostMapping("/createClassroom")

@@ -19,14 +19,28 @@ public class UserMapper {
     @Autowired
     private ClassroomRepository classroomRepository;
 
+     @Autowired
+     private UserRepository userRepository;
+
     public User mapUserDtoToUser(UserDto userDto) {
         User user = new User();
-        List<Friendship> friendships = new ArrayList<>();
         user.setFirstname(userDto.getFirstname());
         user.setLastname(userDto.getLastname());
+        user.setEmail(userDto.getEmail());
+        user.setPassword(userDto.getPassword());
         user.setClassroom(classroomRepository.findById(userDto.getClassroom_id()).get());
         user.setRole(userDto.getRole());
+        return user;
+    }
+
+    public User UpdateUserDtoToUser(UserDto userDto, long id) {
+        User user = userRepository.findById(id).get();
+        user.setFirstname(userDto.getFirstname());
+        user.setLastname(userDto.getLastname());
         user.setEmail(userDto.getEmail());
+        user.setPassword(userDto.getPassword());
+        user.setClassroom(classroomRepository.findById(userDto.getClassroom_id()).get());
+        user.setRole(userDto.getRole());
         return user;
     }
 
