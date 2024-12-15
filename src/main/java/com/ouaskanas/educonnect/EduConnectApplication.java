@@ -18,14 +18,6 @@ public class EduConnectApplication {
     @Bean
     public CommandLineRunner commandLineRunner(UserRepository userRepository) {
         return args -> {
-            User user = User.builder()
-                    .firstname("Anas")
-                    .lastname("Oaskanas")
-                    .role(Role.TEACHER)
-                    .password("hello")
-                    .email("anasouaskar2003@gmail.com")
-                    .build();
-            userRepository.save(user);
         };
     }
 }
