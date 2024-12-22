@@ -28,12 +28,12 @@ public class CommentController {
     }
 
     @GetMapping("/{post_id}/allcomments")
-    public List<Comment> getAllComments(@PathVariable long post_id) {
+    public List<Comment> getAllComments(@PathVariable int post_id) {
         return commentManager.getCommentFromPost(post_id);
     }
 
     @PostMapping("/{post_id}/addcomment")
-    public ResponseEntity<Comment> addComment(@PathVariable long post_id, @RequestBody Comment comment) {
+    public ResponseEntity<Comment> addComment(@PathVariable int post_id, @RequestBody Comment comment) {
         if(!postRepository.existsById(post_id)) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
@@ -42,7 +42,7 @@ public class CommentController {
     }
 
     @DeleteMapping("/{post_id}/{comment_id}")
-    public ResponseEntity<String> deleteComment(@PathVariable long post_id, @PathVariable long comment_id) {
+    public ResponseEntity<String> deleteComment(@PathVariable int post_id, @PathVariable int comment_id) {
         if(!postRepository.existsById(post_id) && !commentRepository.existsById(comment_id)) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }

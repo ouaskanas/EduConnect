@@ -15,7 +15,7 @@ import java.util.List;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long post_Id;
+    private int post_Id;
     private String title;
     private String content;
     @ManyToOne

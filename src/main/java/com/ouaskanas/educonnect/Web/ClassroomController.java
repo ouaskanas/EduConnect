@@ -25,17 +25,17 @@ public class ClassroomController {
     }
 
     @GetMapping("/{id}")
-    public Classroom getClassroom(@PathVariable long id) {
+    public Classroom getClassroom(@PathVariable int id) {
         return classroomService.getClassroom(id);
     }
 
     @GetMapping("/{classroom_id}/students")
-    public List<User> getStudents(@PathVariable long classroom_id) {
+    public List<User> getStudents(@PathVariable int classroom_id) {
         return classroomService.GetClassroomStudents(classroom_id);
     }
 
     @GetMapping("/{classroom_id}/teacher")
-    public ResponseEntity<User> getTeacher(@PathVariable long classroom_id) {
+    public ResponseEntity<User> getTeacher(@PathVariable int classroom_id) {
         if(classroomService.GetClassroomTeacher(classroom_id) == null) { return ResponseEntity.notFound().build(); }
         return new ResponseEntity<>(classroomService.GetClassroomTeacher(classroom_id), HttpStatus.OK);
     }
@@ -47,19 +47,19 @@ public class ClassroomController {
     }
 
     @PutMapping("/addstudent/{classroom_id}")
-    public ResponseEntity<String> addStudent(@PathVariable long classroom_id, @RequestBody long student_id) {
+    public ResponseEntity<String> addStudent(@PathVariable int classroom_id, @RequestBody int student_id) {
         classroomService.addStudentToclassroom(classroom_id, student_id);
         return ResponseEntity.status(HttpStatus.OK).body("student added "+student_id);
     }
 
     @PutMapping("/deletestudent/{classroom_id}")
-    public ResponseEntity<String> deleteStudent(@PathVariable long classroom_id, @RequestBody long student_id) {
+    public ResponseEntity<String> deleteStudent(@PathVariable int classroom_id, @RequestBody int student_id) {
         classroomService.deleteStudentfromClassroom(classroom_id, student_id);
         return ResponseEntity.status(HttpStatus.OK).body("student deleted "+student_id);
     }
 
     @DeleteMapping("/deleteclassroom/{id}")
-    public ResponseEntity<String> deleteClassroom(@PathVariable long id) {
+    public ResponseEntity<String> deleteClassroom(@PathVariable int id) {
         classroomService.deleteClassroom(id);
         return ResponseEntity.status(HttpStatus.OK).body("Classroom deleted "+id);
     }

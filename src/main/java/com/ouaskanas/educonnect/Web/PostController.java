@@ -37,7 +37,7 @@ public class PostController {
     }
 
     @PutMapping("/alterpost/{id}")
-    public ResponseEntity<PostDto> alterPost(@PathVariable long id, @RequestBody PostDto post){
+    public ResponseEntity<PostDto> alterPost(@PathVariable int id, @RequestBody PostDto post){
         if(!postRepository.existsById(id)){
             return ResponseEntity.notFound().build();
         }
@@ -46,7 +46,7 @@ public class PostController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deletePost(@PathVariable long id){
+    public ResponseEntity<String> deletePost(@PathVariable int id){
         if(!postRepository.existsById(id)){
             return ResponseEntity.notFound().build();
         }

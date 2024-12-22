@@ -14,7 +14,7 @@ import java.util.List;
 public class Classroom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long classroom_id;
+    private int classroom_id;
     private String name;
     @ManyToMany
     private List<User> student;

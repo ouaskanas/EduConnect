@@ -11,7 +11,7 @@ import java.util.List;
 @Builder
 public class ClassroomDto {
     private String name;
-    private long teacher_id;
-    private List<Long> students_id;
-    private List<Long> post_id;
+    private int teacher_id;
+    private List<Integer> students_id;
+    private List<Integer> post_id;
 }

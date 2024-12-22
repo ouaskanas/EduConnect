@@ -7,12 +7,12 @@ import com.ouaskanas.educonnect.Dto.ClassroomDto;
 import java.util.List;
 
 public interface ClassroomManager {
-    public Classroom getClassroom(long id);
+    public Classroom getClassroom(int id);
     public List<Classroom> getAllClassrooms();
     public Classroom addClassroom(ClassroomDto classroom);
-    public Classroom addStudentToclassroom(long classroom_id, long student_id);
-    public Classroom deleteStudentfromClassroom(long classroom_id, long student_id);
-    public void deleteClassroom(long id);
-    public List<User> GetClassroomStudents(long classroom_id);
-    public User GetClassroomTeacher(long classroom_id);
+    public Classroom addStudentToclassroom(int classroom_id, int student_id);
+    public Classroom deleteStudentfromClassroom(int classroom_id, int student_id);
+    public void deleteClassroom(int id);
+    public List<User> GetClassroomStudents(int classroom_id);
+    public User GetClassroomTeacher(int classroom_id);
 }

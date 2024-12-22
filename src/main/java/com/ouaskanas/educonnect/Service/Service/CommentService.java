@@ -2,6 +2,7 @@ package com.ouaskanas.educonnect.Service.Service;
 
 import com.ouaskanas.educonnect.Dao.Entities.Comment;
 import com.ouaskanas.educonnect.Dao.Entities.Post;
+import com.ouaskanas.educonnect.Dao.Entities.User;
 import com.ouaskanas.educonnect.Dao.Repositories.CommentRepository;
 import com.ouaskanas.educonnect.Dao.Repositories.PostRepository;
 import com.ouaskanas.educonnect.Service.Manager.CommentManager;
@@ -20,22 +21,25 @@ public class CommentService implements CommentManager {
 
 
     @Override
-    public List<Comment> getCommentFromPost(long post_id) {
+    public List<Comment> getCommentFromPost(int post_id) {
         Post post =postRepository.findById(post_id).get();
         return post.getCommentList();
     }
 
     //must add author
     @Override
-    public Comment postComment(long post_id, Comment comment) {
+    public Comment postComment(int post_id, Comment comment) {
         Post post =postRepository.findById(post_id).get();
         comment.setPost(post);
+        User user = null;
+        //todo:add authenticated user
+        comment.setAuthor(user);
         post.getCommentList().add(comment);
         return commentRepository.save(comment);
     }
 
     @Override
-    public boolean deleteComment(long comment_id, long post_id) {
+    public boolean deleteComment(int comment_id, int post_id) {
         if(commentRepository.existsById(comment_id) && postRepository.existsById(post_id)){
             Post post =postRepository.findById(post_id).get();
             post.getCommentList().remove(comment_id);

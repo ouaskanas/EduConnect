@@ -30,7 +30,7 @@ public class ClassroomService implements ClassroomManager {
     }
 
     @Override
-    public Classroom getClassroom(long id) {
+    public Classroom getClassroom(int id) {
         return classroomRepository.findById(id).get();
     }
 
@@ -41,24 +41,27 @@ public class ClassroomService implements ClassroomManager {
 
     @Override
     public Classroom addClassroom(ClassroomDto classroomdto) {
-        User teacher = userRepository.findById(classroomdto.getTeacher_id()).get();
-        if(!teacher.getRole().equals(Role.TEACHER)){
+        User teacher = null;
+        //todo:add authentication user;
+        if(teacher.getRole()!=Role.TEACHER){
             return null;
         }
+        classroomdto.setTeacher_id(teacher.getUser_id());
         Classroom classroom = classroomMapper.ToEntity(classroomdto);
         return classroomRepository.save(classroom);
     }
 
     @Override
-    public Classroom addStudentToclassroom(long classroom_id, long student_id) {
+    public Classroom addStudentToclassroom(int classroom_id, int student_id) {
         User user = userRepository.findById(student_id).get();
+        if(user.getRole()!=Role.STUDENT){return null;}
         Classroom classroom = classroomRepository.findById(classroom_id).get();
         classroom.getStudent().add(user);
         return classroomRepository.save(classroom);
     }
 
     @Override
-    public Classroom deleteStudentfromClassroom(long classroom_id, long student_id) {
+    public Classroom deleteStudentfromClassroom(int classroom_id, int student_id) {
         User user = userRepository.findById(student_id).get();
         Classroom classroom = classroomRepository.findById(classroom_id).get();
         classroom.getStudent().remove(user);
@@ -66,7 +69,7 @@ public class ClassroomService implements ClassroomManager {
     }
 
     @Override
-    public List<User> GetClassroomStudents(long classroom_id) {
+    public List<User> GetClassroomStudents(int classroom_id) {
         if(!classroomRepository.existsById(classroom_id)){  return null; }
         List<User> students = userService.getAllStudents();
         List<User> classroomStudents = new ArrayList<>();
@@ -79,7 +82,7 @@ public class ClassroomService implements ClassroomManager {
     }
 
     @Override
-    public User GetClassroomTeacher(long classroom_id){
+    public User GetClassroomTeacher(int classroom_id){
         if(!classroomRepository.existsById(classroom_id)){  return null; }
         List<User> teachers = userService.getAllTeachers();
         for( User user : teachers){
@@ -89,7 +92,7 @@ public class ClassroomService implements ClassroomManager {
         return null;
     }
     @Override
-    public void deleteClassroom(long id) {
+    public void deleteClassroom(int id) {
         classroomRepository.deleteById(id);
     }
 }

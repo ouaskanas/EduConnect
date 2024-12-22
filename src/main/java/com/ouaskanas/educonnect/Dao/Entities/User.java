@@ -17,7 +17,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long user_id;
+    private int user_id;
     private String firstname;
     private String lastname;
     @Column(unique = true)

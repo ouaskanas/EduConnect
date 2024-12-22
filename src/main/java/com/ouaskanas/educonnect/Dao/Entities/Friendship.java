@@ -12,7 +12,7 @@ import lombok.*;
 public class Friendship {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long friendship_Id;
+    private int friendship_Id;
     @ManyToOne
     private User student;
     @ManyToOne

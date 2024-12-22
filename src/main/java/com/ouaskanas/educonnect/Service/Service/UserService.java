@@ -29,14 +29,14 @@ public class UserService implements UserManager {
     }
 
     @Override
-    public User updateUser(UserDto userDto, long user_id) {
+    public User updateUser(UserDto userDto, int user_id) {
         if(!userRepository.existsById(user_id)) return null;
         User user = userMapper.mapUserDtoToUser(userDto);
         return userRepository.save(user);
     }
 
     @Override
-    public User getUserById(long id) {
+    public User getUserById(int id) {
         if(!userRepository.existsById(id)) return null;
         return userRepository.findById(id).get();
     }
@@ -63,7 +63,7 @@ public class UserService implements UserManager {
 
 
     @Override
-    public Boolean deleteUser(long id) {
+    public Boolean deleteUser(int id) {
         if(!userRepository.existsById(id)) return Boolean.FALSE;
         User user = userRepository.findById(id).get();
         userRepository.delete(user);

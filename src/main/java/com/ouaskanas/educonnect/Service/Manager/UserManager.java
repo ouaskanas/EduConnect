@@ -8,9 +8,9 @@ import java.util.List;
 public interface UserManager {
 
     public User createUser(UserDto userDto);
-    public User updateUser(UserDto userDto, long userId);
-    public User getUserById(long id);
+    public User updateUser(UserDto userDto, int userId);
+    public User getUserById(int id);
     public List<User> getAllStudents();
     public List<User> getAllTeachers();
-    public Boolean deleteUser(long id);
+    public Boolean deleteUser(int id);
 }

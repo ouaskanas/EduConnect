@@ -1,6 +1,6 @@
 package com.ouaskanas.educonnect.Service.Service;
-
 import com.ouaskanas.educonnect.Dao.Entities.Post;
+import com.ouaskanas.educonnect.Dao.Entities.User;
 import com.ouaskanas.educonnect.Dao.Repositories.PostRepository;
 import com.ouaskanas.educonnect.Mappers.PostMapper;
 import com.ouaskanas.educonnect.Dto.PostDto;
@@ -24,7 +24,7 @@ public class PostService implements PostManager {
     }
 
     @Override
-    public Post getPost(long id) {
+    public Post getPost(int id) {
         return postRepository.findById(id).get();
     }
 
@@ -34,23 +34,24 @@ public class PostService implements PostManager {
     }
 
     @Override
-    public void deletePost(long id) {
+    public void deletePost(int id) {
         var post = postRepository.findById(id);
         postRepository.deleteById(id);
     }
     //must add author
     @Override
     public Post addPost(PostDto dto) {
+        User user = null;
+        //todo:GetAuthenticatedUser
+        dto.setAuthor_id(user.getUser_id());
         Post post = postMapper.ToEntity(dto);
         return postRepository.save(post);
     }
 
     @Override
-    public Post updatePost(long id, PostDto dto) {
+    public Post updatePost(int id, PostDto dto) {
         var post = postRepository.findById(id).get();
-        post.setTitle(dto.getTitle());
-        post.setContent(dto.getContent());
-        post.setShared(dto.isShared());
+        postMapper.UpdateEntityfromDto(post, dto);
         return postRepository.save(post);
     }
 

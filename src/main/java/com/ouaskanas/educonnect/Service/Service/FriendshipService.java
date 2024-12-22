@@ -21,14 +21,14 @@ public class FriendshipService implements FrienshipManager {
     private FriendshipRepository friendshipRepository;
 
     @Override
-    public List<Friendship> friendshipListforUser(long user_id) {
+    public List<Friendship> friendshipListforUser(int user_id) {
         User user = userRepository.findById(user_id).get();
         return user.getFriendships();
     }
 
 
     @Override
-    public Friendship sendFriendShipRequest(long user_id, long friend_id) {
+    public Friendship sendFriendShipRequest(int user_id, int friend_id) {
         Friendship friendship = Friendship.builder()
                 .student(userRepository.findById(user_id).get())
                 .friend(userRepository.findById(friend_id).get())
@@ -38,14 +38,14 @@ public class FriendshipService implements FrienshipManager {
     }
 
     @Override
-    public Friendship acceptFriendshipRequest(long friendship_id) {
+    public Friendship acceptFriendshipRequest(int friendship_id) {
         var friendship = friendshipRepository.findById(friendship_id).get();
         friendship.setStatus(FriendShipStatus.ACCEPTED);
         return friendshipRepository.save(friendship);
     }
 
     @Override
-    public void declineFriendshipRequest(long friendship_id) {
+    public void declineFriendshipRequest(int friendship_id) {
         friendshipRepository.deleteById(friendship_id);
     }
 }

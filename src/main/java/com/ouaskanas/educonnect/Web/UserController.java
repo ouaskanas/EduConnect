@@ -28,7 +28,7 @@ public class UserController {
     }
 
     @GetMapping("/students/classroom/{classroom_id}")
-    public List<User> getStudentsByClassroom(@PathVariable long classroom_id) {
+    public List<User> getStudentsByClassroom(@PathVariable int classroom_id) {
         List<User> students = classroomService.GetClassroomStudents(classroom_id);
         if(students.isEmpty()) return null;
         return students;
@@ -42,7 +42,7 @@ public class UserController {
     }
 
     @GetMapping("/teacher/classroom/{classroom_id}")
-    public ResponseEntity<User> getTeachersByClassroom(@PathVariable long classroom_id) {
+    public ResponseEntity<User> getTeachersByClassroom(@PathVariable int classroom_id) {
         User teacher = classroomService.GetClassroomTeacher(classroom_id);
         return ResponseEntity.ok(teacher);
     }

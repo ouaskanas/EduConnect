@@ -33,7 +33,7 @@ public class UserMapper {
         return user;
     }
 
-    public User UpdateUserDtoToUser(UserDto userDto, long id) {
+    public User UpdateUserDtoToUser(UserDto userDto, int id) {
         User user = userRepository.findById(id).get();
         user.setFirstname(userDto.getFirstname());
         user.setLastname(userDto.getLastname());

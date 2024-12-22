@@ -16,5 +16,5 @@ public class UserDto {
     private String email;
     private String password;
     private Role role;
-    private long classroom_id;
+    private int classroom_id;
 }
