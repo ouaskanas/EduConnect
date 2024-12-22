@@ -1,13 +1,16 @@
 package com.ouaskanas.educonnect.Web;
 
 import com.ouaskanas.educonnect.Dao.Entities.User;
+import com.ouaskanas.educonnect.Dao.Repositories.UserRepository;
 import com.ouaskanas.educonnect.Service.Service.ClassroomService;
 import com.ouaskanas.educonnect.Service.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -18,6 +21,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private ClassroomService classroomService;
+    @Autowired
+    private UserRepository userRepository;
 
 
     @GetMapping("/students")
@@ -47,5 +52,15 @@ public class UserController {
         return ResponseEntity.ok(teacher);
     }
 
+    @GetMapping("/suggestions")
+    public List<User> getSuggestions(@AuthenticationPrincipal User user) {
+        int user_id = user.getUser_id();
+        List<User> users = userRepository.findAll();
+        Collections.shuffle(users);
+        return users.stream()
+                .filter(current -> current.getUser_id() != user_id)
+                .limit(10)
+                .toList();
+    }
     //todo:SignIn
 }
