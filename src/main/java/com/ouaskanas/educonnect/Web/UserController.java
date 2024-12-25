@@ -2,12 +2,12 @@ package com.ouaskanas.educonnect.Web;
 
 import com.ouaskanas.educonnect.Dao.Entities.User;
 import com.ouaskanas.educonnect.Dao.Repositories.UserRepository;
+import com.ouaskanas.educonnect.Dto.UserDto;
 import com.ouaskanas.educonnect.Service.Service.ClassroomService;
 import com.ouaskanas.educonnect.Service.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -53,7 +53,7 @@ public class UserController {
     }
 
     @GetMapping("/suggestions")
-    public List<User> getSuggestions(@AuthenticationPrincipal User user) {
+    public List<User> getSuggestions(User user) {
         int user_id = user.getUser_id();
         List<User> users = userRepository.findAll();
         Collections.shuffle(users);
@@ -63,4 +63,11 @@ public class UserController {
                 .toList();
     }
     //todo:SignIn
+
+    @PostMapping("/createAcc")
+    public ResponseEntity<User> createAcc(@RequestBody UserDto userDto) {
+        User user = userService.createUser(userDto);
+        if(user == null) return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        return ResponseEntity.ok(user);
+    }
 }
