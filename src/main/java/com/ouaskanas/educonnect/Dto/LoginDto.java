@@ -9,7 +9,9 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LoginDto {
+    @NonNull
     private String username;
+    @NonNull
     private String password;
     private String role;
 }

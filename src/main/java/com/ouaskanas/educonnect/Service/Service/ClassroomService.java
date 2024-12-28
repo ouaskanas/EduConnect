@@ -71,7 +71,7 @@ public class ClassroomService implements ClassroomManager {
     @Override
     public List<User> GetClassroomStudents(int classroom_id) {
         if(!classroomRepository.existsById(classroom_id)){  return null; }
-        List<User> students = userService.getAllStudents();
+        List<User> students = userService.getStudents();
         List<User> classroomStudents = new ArrayList<>();
         if(students.isEmpty()){ return null; }
         for(User user : students){
@@ -84,7 +84,7 @@ public class ClassroomService implements ClassroomManager {
     @Override
     public User GetClassroomTeacher(int classroom_id){
         if(!classroomRepository.existsById(classroom_id)){  return null; }
-        List<User> teachers = userService.getAllTeachers();
+        List<User> teachers = userService.getTeachers();
         for( User user : teachers){
             if(user.getClassroom() == classroomRepository.findById(classroom_id).get())
                 return user;

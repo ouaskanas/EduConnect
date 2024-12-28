@@ -6,6 +6,7 @@ import com.ouaskanas.educonnect.Dao.Entities.User;
 import com.ouaskanas.educonnect.Dao.Repositories.ClassroomRepository;
 import com.ouaskanas.educonnect.Dao.Repositories.FriendshipRepository;
 import com.ouaskanas.educonnect.Dao.Repositories.UserRepository;
+import com.ouaskanas.educonnect.Dto.RegisterDto;
 import com.ouaskanas.educonnect.Dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -44,4 +45,17 @@ public class UserMapper {
         return user;
     }
 
+    public User mapRegisterDtoToUser(RegisterDto registerDto) {
+        if (registerDto.getConfirmPassword() !=registerDto.getPassword()) {
+            return null;
+        }
+        User user = User.builder()
+                .firstname(registerDto.getFirstName())
+                .lastname(registerDto.getLastName())
+                .email(registerDto.getEmail())
+                .password(registerDto.getPassword())
+                .role(registerDto.getRole())
+                .build();
+        return user;
+    }
 }

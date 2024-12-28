@@ -2,18 +2,30 @@ package com.ouaskanas.educonnect.Service.Service;
 
 import com.ouaskanas.educonnect.Dao.Entities.Role;
 import com.ouaskanas.educonnect.Dao.Entities.User;
+import com.ouaskanas.educonnect.Dao.Repositories.ClassroomRepository;
 import com.ouaskanas.educonnect.Dao.Repositories.UserRepository;
+import com.ouaskanas.educonnect.Dto.AuthResponseDto;
+import com.ouaskanas.educonnect.Dto.LoginDto;
+import com.ouaskanas.educonnect.Dto.RegisterDto;
 import com.ouaskanas.educonnect.Dto.UserDto;
 import com.ouaskanas.educonnect.Mappers.UserMapper;
-import com.ouaskanas.educonnect.Service.Manager.UserManager;
+import com.ouaskanas.educonnect.Security.JwtGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserService implements UserManager {
+public class UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -21,52 +33,68 @@ public class UserService implements UserManager {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private ClassroomRepository classroomRepository;
 
-    @Override
-    public User createUser(UserDto userDto) {
-        User user = userMapper.mapUserDtoToUser(userDto);
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JwtGenerator jwtGenerator;
+
+    private final PasswordEncoder passwordEncoder;
+
+    public UserService(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+
+
+    public User RegisterUser(RegisterDto registerDto) {
+        if(userRepository.findByEmail(registerDto.getEmail()).isPresent()) {
+            throw new IllegalArgumentException("Email is already in use");
+        }
+        User user = userMapper.mapRegisterDtoToUser(registerDto);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
-    @Override
-    public User updateUser(UserDto userDto, int user_id) {
-        if(!userRepository.existsById(user_id)) return null;
-        User user = userMapper.mapUserDtoToUser(userDto);
-        return userRepository.save(user);
+    public ResponseEntity<?> loginUser(LoginDto loginDto) {
+        UsernamePasswordAuthenticationToken test = new UsernamePasswordAuthenticationToken(
+                loginDto.getUsername(),
+                loginDto.getPassword());
+        System.out.println("i m here so hello ");
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            loginDto.getUsername(),
+                            loginDto.getPassword()));
+            System.out.println("authentication" + authentication);
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            String token = jwtGenerator.generateToken(authentication);
+            return new ResponseEntity<AuthResponseDto>(new AuthResponseDto(token), HttpStatus.OK);
+        } catch (AuthenticationException e) {
+            return new ResponseEntity<String>("Username or Password are wrong ", HttpStatus.NOT_ACCEPTABLE);
+        }
     }
 
-    @Override
-    public User getUserById(int id) {
-        if(!userRepository.existsById(id)) return null;
-        return userRepository.findById(id).get();
-    }
-
-    @Override
-    public List<User> getAllStudents() {
+    public List<User> getStudents() {
         List<User> users = userRepository.findAll();
         List<User> students = new ArrayList<>();
         for(User user : users) {
-            if(user.getRole() == Role.STUDENT) students.add(user);
+            if( user.getRole() == Role.STUDENT)
+                students.add(user);
         }
         return students;
     }
 
-    @Override
-    public List<User> getAllTeachers() {
+    public List<User> getTeachers() {
         List<User> users = userRepository.findAll();
         List<User> teachers = new ArrayList<>();
         for(User user : users) {
-            if(user.getRole() == Role.TEACHER) teachers.add(user);
+            if (user.getRole() == Role.TEACHER)
+                teachers.add(user);
         }
         return teachers;
     }
 
-
-    @Override
-    public Boolean deleteUser(int id) {
-        if(!userRepository.existsById(id)) return Boolean.FALSE;
-        User user = userRepository.findById(id).get();
-        userRepository.delete(user);
-        return Boolean.TRUE;
-    }
 }
