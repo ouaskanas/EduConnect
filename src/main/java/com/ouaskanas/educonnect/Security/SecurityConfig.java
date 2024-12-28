@@ -15,16 +15,14 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 public class SecurityConfig {
 
-    public final static String[] AUTH_REQUIREMENT = {
-            "/api/v1/users",
-            "/api/v1/friendship",
-            "/api/v1/classroom"
-    };
-
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf((csrf)-> csrf.disable()).authorizeHttpRequests(request->
-                request.requestMatchers(AUTH_REQUIREMENT).authenticated()
+                request.requestMatchers("/api/v1/friendship/**",
+                                "/api/v1/classroom/**",
+                                "/api/v1/users/students",
+                                "/api/v1/users/teachers",
+                                "/api/v1/users/grantroles/").authenticated()
                         .anyRequest().permitAll())
                 .formLogin(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

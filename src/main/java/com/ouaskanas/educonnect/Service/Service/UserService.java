@@ -73,7 +73,7 @@ public class UserService {
             String token = jwtGenerator.generateToken(authentication);
             return new ResponseEntity<AuthResponseDto>(new AuthResponseDto(token), HttpStatus.OK);
         } catch (AuthenticationException e) {
-            return new ResponseEntity<String>("Username or Password are wrong ", HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<String>("Username or Password are wrong "+e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
         }
     }
 
@@ -96,5 +96,16 @@ public class UserService {
         }
         return teachers;
     }
+
+    public User grantRole(int id, Role role){
+        User user = userRepository.findById(id).get();
+        if(user.getRole() == role){
+            return null;
+        }
+        user.setRole(role);
+        return userRepository.save(user);
+    }
+
+
 
 }

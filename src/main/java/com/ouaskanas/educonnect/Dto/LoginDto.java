@@ -1,5 +1,6 @@
 package com.ouaskanas.educonnect.Dto;
 
+import com.ouaskanas.educonnect.Dao.Entities.Role;
 import jakarta.persistence.Table;
 import lombok.*;
 
@@ -13,5 +14,5 @@ public class LoginDto {
     private String username;
     @NonNull
     private String password;
-    private String role;
+    private String role= Role.STUDENT.name();
 }

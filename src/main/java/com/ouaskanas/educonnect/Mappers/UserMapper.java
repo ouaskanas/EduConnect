@@ -1,18 +1,14 @@
 package com.ouaskanas.educonnect.Mappers;
 
-
-import com.ouaskanas.educonnect.Dao.Entities.Friendship;
+import com.ouaskanas.educonnect.Dao.Entities.Role;
 import com.ouaskanas.educonnect.Dao.Entities.User;
 import com.ouaskanas.educonnect.Dao.Repositories.ClassroomRepository;
-import com.ouaskanas.educonnect.Dao.Repositories.FriendshipRepository;
 import com.ouaskanas.educonnect.Dao.Repositories.UserRepository;
 import com.ouaskanas.educonnect.Dto.RegisterDto;
 import com.ouaskanas.educonnect.Dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class UserMapper {
@@ -46,16 +42,12 @@ public class UserMapper {
     }
 
     public User mapRegisterDtoToUser(RegisterDto registerDto) {
-        if (registerDto.getConfirmPassword() !=registerDto.getPassword()) {
-            return null;
-        }
-        User user = User.builder()
-                .firstname(registerDto.getFirstName())
-                .lastname(registerDto.getLastName())
-                .email(registerDto.getEmail())
-                .password(registerDto.getPassword())
-                .role(registerDto.getRole())
-                .build();
+        User user = new User();
+        user.setFirstname(registerDto.getFirstName());
+        user.setLastname(registerDto.getLastName());
+        user.setEmail(registerDto.getEmail());
+        user.setPassword(registerDto.getPassword());
+        user.setRole(Role.STUDENT);
         return user;
     }
 }
