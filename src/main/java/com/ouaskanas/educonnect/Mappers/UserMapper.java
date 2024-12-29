@@ -24,10 +24,19 @@ public class UserMapper {
         user.setFirstname(userDto.getFirstname());
         user.setLastname(userDto.getLastname());
         user.setEmail(userDto.getEmail());
-        user.setPassword(userDto.getPassword());
         user.setClassroom(classroomRepository.findById(userDto.getClassroom_id()).get());
         user.setRole(userDto.getRole());
         return user;
+    }
+
+    public UserDto mapUserToUserDto(User user) {
+        UserDto userDto = new UserDto();
+        userDto.setFirstname(user.getFirstname());
+        userDto.setLastname(user.getLastname());
+        userDto.setEmail(user.getEmail());
+        userDto.setRole(user.getRole());
+        if(user.getClassroom() != null){userDto.setClassroom_id(user.getClassroom().getClassroom_id());}
+        return userDto;
     }
 
     public User UpdateUserDtoToUser(UserDto userDto, int id) {
@@ -35,7 +44,6 @@ public class UserMapper {
         user.setFirstname(userDto.getFirstname());
         user.setLastname(userDto.getLastname());
         user.setEmail(userDto.getEmail());
-        user.setPassword(userDto.getPassword());
         user.setClassroom(classroomRepository.findById(userDto.getClassroom_id()).get());
         user.setRole(userDto.getRole());
         return user;

@@ -17,4 +17,8 @@ public class PostDto {
     private int author_id;
     private int classroom_id;
     private boolean shared;
+
+    public Integer getclassRoomId(){
+        return classroom_id;
+    }
 }

@@ -12,6 +12,4 @@ import java.util.List;
 public class ClassroomDto {
     private String name;
     private int teacher_id;
-    private List<Integer> students_id;
-    private List<Integer> post_id;
 }

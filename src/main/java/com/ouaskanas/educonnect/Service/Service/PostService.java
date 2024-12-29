@@ -18,6 +18,9 @@ public class PostService implements PostManager {
     @Autowired
     private final PostMapper postMapper;
 
+    @Autowired
+    private UserService userService;
+
     public PostService(PostRepository postRepository) {
         this.postRepository = postRepository;
         this.postMapper = new PostMapper();
@@ -38,23 +41,19 @@ public class PostService implements PostManager {
         var post = postRepository.findById(id);
         postRepository.deleteById(id);
     }
-    //must add author
     @Override
     public Post addPost(PostDto dto) {
-        User user = null;
-        //todo:GetAuthenticatedUser
+        User user = userService.CurrentUser();
         dto.setAuthor_id(user.getUser_id());
         Post post = postMapper.ToEntity(dto);
         return postRepository.save(post);
     }
-
     @Override
     public Post updatePost(int id, PostDto dto) {
         var post = postRepository.findById(id).get();
         postMapper.UpdateEntityfromDto(post, dto);
         return postRepository.save(post);
     }
-
     @Override
     public Post getPostByTitle(String title) {
         return postRepository.findByTitle(title);

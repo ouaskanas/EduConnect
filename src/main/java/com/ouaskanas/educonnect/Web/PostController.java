@@ -4,7 +4,6 @@ import com.ouaskanas.educonnect.Dao.Entities.Post;
 import com.ouaskanas.educonnect.Dao.Repositories.PostRepository;
 import com.ouaskanas.educonnect.Dto.PostDto;
 import com.ouaskanas.educonnect.Service.Manager.PostManager;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +29,7 @@ public class PostController {
         return postManager.getPost(id);
     }
 
-    @PostMapping("/createpost/")
+    @PostMapping("/createpost")
     public ResponseEntity<PostDto> createPost(@RequestBody PostDto post){
         postManager.addPost(post);
         return ResponseEntity.status(HttpStatus.OK).body(post);

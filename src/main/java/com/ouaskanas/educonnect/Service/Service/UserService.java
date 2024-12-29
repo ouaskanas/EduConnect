@@ -10,6 +10,7 @@ import com.ouaskanas.educonnect.Dto.RegisterDto;
 import com.ouaskanas.educonnect.Dto.UserDto;
 import com.ouaskanas.educonnect.Mappers.UserMapper;
 import com.ouaskanas.educonnect.Security.JwtGenerator;
+import com.ouaskanas.educonnect.Security.UserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +42,9 @@ public class UserService {
 
     @Autowired
     private JwtGenerator jwtGenerator;
+
+    @Autowired
+    private UserDetailService userDetailService;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -104,6 +108,10 @@ public class UserService {
         }
         user.setRole(role);
         return userRepository.save(user);
+    }
+
+    public User CurrentUser(){
+        return userDetailService.getCurrentUser();
     }
 
 

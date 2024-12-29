@@ -45,7 +45,9 @@ public class PostMapper {
         } else {
             throw new RuntimeException("Utilisateur avec l'ID " + postDto.getAuthor_id() + " n'a pas été trouvé.");
         }
-        post.setClassroom(classroomRepository.findById(postDto.getClassroom_id()).get());
+        if (postDto.getclassRoomId() != null) {
+            classroomRepository.findById(postDto.getClassroom_id()).ifPresent(post::setClassroom);
+        }
         return post;
     }
 
