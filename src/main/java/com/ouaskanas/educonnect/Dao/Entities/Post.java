@@ -1,5 +1,6 @@
 package com.ouaskanas.educonnect.Dao.Entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Post {
+public class    Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int post_Id;
@@ -23,6 +24,7 @@ public class Post {
     @ManyToOne
     private Classroom classroom;
     @OneToMany
+    @JsonManagedReference
     private List<Comment> commentList;
     private boolean shared;
     private LocalDateTime createdAt = LocalDateTime.now();

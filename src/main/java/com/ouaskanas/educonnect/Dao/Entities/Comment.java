@@ -1,5 +1,6 @@
 package com.ouaskanas.educonnect.Dao.Entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,6 +19,7 @@ public class Comment {
     private int comment_id;
     private String comment;
     @ManyToOne
+    @JsonManagedReference
     private Post post;
     @ManyToOne
     private User author;

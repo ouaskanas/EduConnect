@@ -5,37 +5,51 @@ import com.ouaskanas.educonnect.Dao.Entities.Post;
 import com.ouaskanas.educonnect.Dao.Entities.User;
 import com.ouaskanas.educonnect.Dao.Repositories.CommentRepository;
 import com.ouaskanas.educonnect.Dao.Repositories.PostRepository;
+import com.ouaskanas.educonnect.Dto.CommentDto;
+import com.ouaskanas.educonnect.Mappers.CommentMapper;
+import com.ouaskanas.educonnect.Security.UserDetailService;
 import com.ouaskanas.educonnect.Service.Manager.CommentManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class CommentService implements CommentManager {
 
     @Autowired
     private PostRepository postRepository;
-
     @Autowired
     private CommentRepository commentRepository;
+    @Autowired
+    private CommentMapper commentMapper;
+    @Autowired
+    private UserDetailService userDetailsService;
 
 
     @Override
-    public List<Comment> getCommentFromPost(int post_id) {
+    public List<CommentDto> getCommentFromPost(int post_id) {
         Post post =postRepository.findById(post_id).get();
-        return post.getCommentList();
+        List<CommentDto> commentDtos = new ArrayList<>();
+        List<Comment> comments = post.getCommentList();
+        for (Comment comment : comments) {
+            commentDtos.add(commentMapper.toDto(comment));
+        }
+        return commentDtos;
     }
 
     //must add author
     @Override
-    public Comment postComment(int post_id, Comment comment) {
+    public CommentDto postComment(int post_id, String commenttxt) {
         Post post =postRepository.findById(post_id).get();
+        Comment comment = new Comment();
+        comment.setAuthor(userDetailsService.getCurrentUser());
         comment.setPost(post);
-        User user = null;
-        //todo:add authenticated user
-        comment.setAuthor(user);
+        comment.setComment(commenttxt);
         post.getCommentList().add(comment);
-        return commentRepository.save(comment);
+        commentRepository.save(comment);
+        return commentMapper.toDto(comment);
     }
 
     @Override
