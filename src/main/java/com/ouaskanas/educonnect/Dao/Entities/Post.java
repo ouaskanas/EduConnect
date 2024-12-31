@@ -24,7 +24,6 @@ public class    Post {
     @ManyToOne
     private Classroom classroom;
     @OneToMany
-    @JsonManagedReference
     private List<Comment> commentList;
     private boolean shared;
     private LocalDateTime createdAt = LocalDateTime.now();

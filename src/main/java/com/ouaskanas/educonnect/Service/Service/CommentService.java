@@ -41,12 +41,10 @@ public class CommentService implements CommentManager {
 
     //must add author
     @Override
-    public CommentDto postComment(int post_id, String commenttxt) {
+    public CommentDto postComment(int post_id, Comment comment) {
         Post post =postRepository.findById(post_id).get();
-        Comment comment = new Comment();
         comment.setAuthor(userDetailsService.getCurrentUser());
         comment.setPost(post);
-        comment.setComment(commenttxt);
         post.getCommentList().add(comment);
         commentRepository.save(comment);
         return commentMapper.toDto(comment);

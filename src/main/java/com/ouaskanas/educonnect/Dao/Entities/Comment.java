@@ -19,7 +19,6 @@ public class Comment {
     private int comment_id;
     private String comment;
     @ManyToOne
-    @JsonManagedReference
     private Post post;
     @ManyToOne
     private User author;

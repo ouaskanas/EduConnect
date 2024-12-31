@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface CommentManager {
     public List<CommentDto> getCommentFromPost(int post_id);
-    public CommentDto postComment(int post_id, String commenttxt);
+    public CommentDto postComment(int post_id, Comment commenttxt);
     public boolean deleteComment(int comment_id, int post_id);
 
 }

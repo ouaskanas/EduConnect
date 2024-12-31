@@ -40,7 +40,7 @@ public class CommentController {
 
     @PostMapping("/{post_id}/addcomment")
     public ResponseEntity<CommentDto> addComment(@PathVariable int post_id,
-                                              @RequestBody String comment) {
+                                              @RequestBody Comment comment) {
         if(!postRepository.existsById(post_id)) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
