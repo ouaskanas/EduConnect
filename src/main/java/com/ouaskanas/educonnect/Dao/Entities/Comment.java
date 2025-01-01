@@ -23,4 +23,5 @@ public class Comment {
     @ManyToOne
     private User author;
     private LocalDateTime createdAt = LocalDateTime.now();
+
 }

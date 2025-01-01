@@ -1,13 +1,19 @@
 package com.ouaskanas.educonnect.Mappers;
 
+import com.ouaskanas.educonnect.Dao.Entities.Comment;
 import com.ouaskanas.educonnect.Dao.Entities.Post;
 import com.ouaskanas.educonnect.Dao.Entities.User;
 import com.ouaskanas.educonnect.Dao.Repositories.ClassroomRepository;
+import com.ouaskanas.educonnect.Dao.Repositories.PostRepository;
 import com.ouaskanas.educonnect.Dao.Repositories.UserRepository;
+import com.ouaskanas.educonnect.Dto.CommentDto;
 import com.ouaskanas.educonnect.Dto.PostDto;
+import com.ouaskanas.educonnect.Dto.PostOutput;
 import org.mapstruct.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Mapper(componentModel = "spring")
@@ -17,6 +23,12 @@ public class PostMapper {
     private UserRepository userRepository;
     @Autowired
     private ClassroomRepository classroomRepository;
+    @Autowired
+    private UserMapper userMapper;
+    @Autowired
+    private PostRepository postRepository;
+    @Autowired
+    private CommentMapper commentMapper;
 
     public void UpdateEntityfromDto(Post post,PostDto postDto) {
         post.setTitle(postDto.getTitle());
@@ -49,6 +61,20 @@ public class PostMapper {
             classroomRepository.findById(postDto.getClassroom_id()).ifPresent(post::setClassroom);
         }
         return post;
+    }
+
+    public PostOutput postOutput(Post post){
+        PostOutput postOutput = new PostOutput();
+        postOutput.setTitle(post.getTitle());
+        postOutput.setContent(post.getContent());
+        postOutput.setAuthor(userMapper.mapUserToUserDto(post.getAuthor()));
+        List<Comment> comments = post.getCommentList();
+        List<CommentDto> commentDtos = new ArrayList<>();
+        for(Comment comment : comments){
+            commentDtos.add(commentMapper.toDto(comment));
+        }
+        postOutput.setComments(commentDtos);
+        return postOutput;
     }
 
 }

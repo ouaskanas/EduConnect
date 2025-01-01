@@ -45,8 +45,8 @@ public class CommentService implements CommentManager {
         Post post =postRepository.findById(post_id).get();
         comment.setAuthor(userDetailsService.getCurrentUser());
         comment.setPost(post);
-        post.getCommentList().add(comment);
         commentRepository.save(comment);
+        post.addComment(comment);
         return commentMapper.toDto(comment);
     }
 

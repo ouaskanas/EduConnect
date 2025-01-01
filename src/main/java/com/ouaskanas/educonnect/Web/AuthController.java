@@ -3,6 +3,7 @@ package com.ouaskanas.educonnect.Web;
 
 import com.ouaskanas.educonnect.Dao.Entities.Post;
 import com.ouaskanas.educonnect.Dto.LoginDto;
+import com.ouaskanas.educonnect.Dto.PostOutput;
 import com.ouaskanas.educonnect.Dto.RegisterDto;
 import com.ouaskanas.educonnect.Service.Service.PostService;
 import com.ouaskanas.educonnect.Service.Service.UserService;
@@ -35,7 +36,7 @@ public class AuthController {
     }
 
     @GetMapping("/")
-    public List<Post> getPosts() {
+    public List<PostOutput> getPosts() {
         return postService.getAllPosts();
     }
 }

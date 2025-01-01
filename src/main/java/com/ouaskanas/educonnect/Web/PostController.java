@@ -3,6 +3,7 @@ package com.ouaskanas.educonnect.Web;
 import com.ouaskanas.educonnect.Dao.Entities.Post;
 import com.ouaskanas.educonnect.Dao.Repositories.PostRepository;
 import com.ouaskanas.educonnect.Dto.PostDto;
+import com.ouaskanas.educonnect.Dto.PostOutput;
 import com.ouaskanas.educonnect.Service.Manager.PostManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,12 +21,12 @@ public class PostController {
     private PostRepository postRepository;
 
     @GetMapping("/allposts")
-    public List<Post> getAllPosts(){
+    public List<PostOutput> getAllPosts(){
         return postManager.getAllPosts();
     }
 
     @GetMapping("/getpost/{id}")
-    public Post getPostById(@PathVariable int id){
+    public PostOutput getPostById(@PathVariable int id){
         return postManager.getPost(id);
     }
 
@@ -54,7 +55,7 @@ public class PostController {
     }
 
     @GetMapping("/getpost/{title}")
-    public Post getPostByTitle(@PathVariable String title){
+    public PostOutput getPostByTitle(@PathVariable String title){
         return postManager.getPostByTitle(title);
     }
 }

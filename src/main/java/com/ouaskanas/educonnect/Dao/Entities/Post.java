@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,8 +24,13 @@ public class    Post {
     private User author;
     @ManyToOne
     private Classroom classroom;
-    @OneToMany
-    private List<Comment> commentList;
+    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER)
+    private List<Comment> commentList = new ArrayList<>();
     private boolean shared;
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    public void addComment(Comment comment) {
+        commentList.add(comment);
+        comment.setPost(this);
+    }
 }

@@ -2,12 +2,14 @@ package com.ouaskanas.educonnect.Service.Service;
 import com.ouaskanas.educonnect.Dao.Entities.Post;
 import com.ouaskanas.educonnect.Dao.Entities.User;
 import com.ouaskanas.educonnect.Dao.Repositories.PostRepository;
+import com.ouaskanas.educonnect.Dto.PostOutput;
 import com.ouaskanas.educonnect.Mappers.PostMapper;
 import com.ouaskanas.educonnect.Dto.PostDto;
 import com.ouaskanas.educonnect.Service.Manager.PostManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class PostService implements PostManager {
@@ -27,13 +29,18 @@ public class PostService implements PostManager {
     }
 
     @Override
-    public Post getPost(int id) {
-        return postRepository.findById(id).get();
+    public PostOutput getPost(int id) {
+        return postMapper.postOutput(postRepository.findById(id).get());
     }
 
     @Override
-    public List<Post> getAllPosts() {
-        return postRepository.findAll();
+    public List<PostOutput> getAllPosts() {
+        List<Post> posts = postRepository.findAll();
+        List<PostOutput> postOutputs = new ArrayList<>();
+        for (Post post : posts) {
+            postOutputs.add(postMapper.postOutput(post));
+        }
+        return postOutputs;
     }
 
     @Override
@@ -42,20 +49,22 @@ public class PostService implements PostManager {
         postRepository.deleteById(id);
     }
     @Override
-    public Post addPost(PostDto dto) {
+    public PostOutput addPost(PostDto dto) {
         User user = userService.CurrentUser();
         dto.setAuthor_id(user.getUser_id());
         Post post = postMapper.ToEntity(dto);
-        return postRepository.save(post);
+        postRepository.save(post);
+        return postMapper.postOutput(post);
     }
     @Override
-    public Post updatePost(int id, PostDto dto) {
+    public PostOutput updatePost(int id, PostDto dto) {
         var post = postRepository.findById(id).get();
         postMapper.UpdateEntityfromDto(post, dto);
-        return postRepository.save(post);
+        postRepository.save(post);
+        return postMapper.postOutput(post);
     }
     @Override
-    public Post getPostByTitle(String title) {
-        return postRepository.findByTitle(title);
+    public PostOutput getPostByTitle(String title) {
+        return postMapper.postOutput(postRepository.findByTitle(title));
     }
 }
