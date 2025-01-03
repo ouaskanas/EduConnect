@@ -24,12 +24,14 @@ public class AuthController {
     @Autowired
     private PostService postService;
 
-    @PostMapping("/login")
+    @CrossOrigin(origins = "http://localhost:5173")
+    @PostMapping("/auth/login")
     public ResponseEntity<?> login(@RequestBody LoginDto loginDto) {
         return userService.loginUser(loginDto);
     }
 
-    @PostMapping("/register")
+    @CrossOrigin(origins = "http://localhost:5173")
+    @PostMapping("/auth/register")
     public @ResponseBody ResponseEntity<?> register(@RequestBody RegisterDto registerDto) {
         userService.RegisterUser(registerDto);
         return ResponseEntity.status(HttpStatus.OK).body("user created successfully");
