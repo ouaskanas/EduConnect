@@ -24,6 +24,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
+
 
 @Service
 public class UserService {
@@ -114,6 +116,15 @@ public class UserService {
         return userDetailService.getCurrentUser();
     }
 
+    public List<UserDto> UserSuggestion(){
+        List<User> users = userRepository.findAll();
+        Collections.shuffle(users);
+        List<UserDto> userDtos = new ArrayList<>();
+        for(User user : users) {
+            userDtos.add(userMapper.mapUserToUserDto(user));
+        }
+        return userDtos;
+    }
 
 
 }

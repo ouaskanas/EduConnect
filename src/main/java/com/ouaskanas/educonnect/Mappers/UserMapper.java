@@ -1,6 +1,6 @@
 package com.ouaskanas.educonnect.Mappers;
 
-import com.ouaskanas.educonnect.Dao.Entities.Role;
+
 import com.ouaskanas.educonnect.Dao.Entities.User;
 import com.ouaskanas.educonnect.Dao.Repositories.ClassroomRepository;
 import com.ouaskanas.educonnect.Dao.Repositories.UserRepository;
@@ -55,7 +55,7 @@ public class UserMapper {
         user.setLastname(registerDto.getLastName());
         user.setEmail(registerDto.getEmail());
         user.setPassword(registerDto.getPassword());
-        user.setRole(Role.STUDENT);
+        user.setRole(registerDto.getRole());
         return user;
     }
 }

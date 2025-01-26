@@ -20,5 +20,5 @@ public class RegisterDto {
     private String password;
     @NonNull
     private String confirmPassword;
-    private String role;
+    private Role role;
 }

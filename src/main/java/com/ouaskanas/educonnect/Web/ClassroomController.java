@@ -18,7 +18,6 @@ public class ClassroomController {
     @Autowired
     private ClassroomService classroomService;
 
-
     @GetMapping("/allclassrooms")
     public List<Classroom> getAllClassrooms() {
         return classroomService.getAllClassrooms();

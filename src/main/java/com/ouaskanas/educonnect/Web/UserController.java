@@ -2,6 +2,7 @@ package com.ouaskanas.educonnect.Web;
 
 import com.ouaskanas.educonnect.Dao.Entities.Role;
 import com.ouaskanas.educonnect.Dao.Entities.User;
+import com.ouaskanas.educonnect.Dto.UserDto;
 import com.ouaskanas.educonnect.Service.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,11 @@ public class UserController {
         return userService.getStudents();
     }
 
+    @GetMapping("/suggestions")
+    public List<UserDto> getSuggestions(){
+        return userService.UserSuggestion();
+    }
+
     @GetMapping("/currentuser")
     public User getCurrentUser(){
         return userService.CurrentUser();
@@ -36,5 +42,6 @@ public class UserController {
         userService.grantRole(id,role);
         return ResponseEntity.ok().build();
     }
+
 
 }

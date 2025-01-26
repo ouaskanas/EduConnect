@@ -20,6 +20,7 @@ public class PostController {
     @Autowired
     private PostRepository postRepository;
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/allposts")
     public List<PostOutput> getAllPosts(){
         return postManager.getAllPosts();

@@ -16,17 +16,21 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    SecurityFilterChain securityFilterChain(HttpSecurity http, JwtGenerator jwtGenerator) throws Exception {
         http.csrf((csrf)-> csrf.disable()).authorizeHttpRequests(request->
                 request.requestMatchers("/api/v1/friendship/**",
                                 "/api/v1/classroom/**",
                                 "/api/v1/users/students",
-                                "/api/v1/users/teachers",
-                                "/api/v1/users/grantroles/").authenticated()
+                                "/api/v1/users/teachers").authenticated()
+                        .requestMatchers("/api/v1/friendship/**",
+                                "/api/v1/classroom/createClassroom/**",
+                                "/api/v1/classroom/allclassrooms",
+                                "/api/v1/users/currentuser/",
+                                "/api/v1/users/suggestions/").authenticated()
                         .anyRequest().permitAll())
                 .formLogin(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtAuthenticationFilter(jwtGenerator), UsernamePasswordAuthenticationFilter.class)
                 .httpBasic(Customizer.withDefaults());
         return http.build();
     }
@@ -42,7 +46,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public JwtAuthenticationFilter jwtAuthenticationFilter(){
+    public JwtAuthenticationFilter jwtAuthenticationFilter(JwtGenerator jwtGenerator){
         return new JwtAuthenticationFilter();
     }
 
