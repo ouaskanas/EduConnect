@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0c319201-ba09-42f9-a0c9-6b01a414d94f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Security/CorsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Dao/Entities/Classroom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Dao/Entities/Classroom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Dao/Repositories/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Dao/Repositories/PostRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Dto/PostDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Dto/PostDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Dto/PostOutput.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Dto/PostOutput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Mappers/ClassroomMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Mappers/ClassroomMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Mappers/CommentMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Mappers/CommentMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Mappers/PostMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Mappers/PostMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Service/Manager/PostManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Service/Manager/PostManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Service/Service/PostService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Service/Service/PostService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Service/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Service/Service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Web/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Web/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Web/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Web/CommentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Web/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Web/PostController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Web/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ouaskanas/educonnect/Web/UserController.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2pDwxOu1dw6fqch6SFnlWDwr9gH" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.EduConnectApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/anaso/IdeaProjects/EduConnect&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.ouaskanas.educonnect.security" />
+      <recent name="com.ouaskanas.educonnect.Config" />
+      <recent name="com.ouaskanas.educonnect.SecurityConfig" />
+      <recent name="com.ouaskanas.educonnect.Dao.Entities" />
+      <recent name="com.ouaskanas.educonnect.Dao" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="EduConnectApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="EduConnect" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.ouaskanas.educonnect.EduConnectApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0c319201-ba09-42f9-a0c9-6b01a414d94f" name="Changes" comment="" />
+      <created>1732314201294</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1732314201294</updated>
+      <workItem from="1732314201867" duration="11000" />
+      <workItem from="1732314282366" duration="6058000" />
+      <workItem from="1732379504326" duration="4365000" />
+      <workItem from="1732383932809" duration="45000" />
+      <workItem from="1732402077503" duration="9245000" />
+      <workItem from="1732467393554" duration="7316000" />
+      <workItem from="1732485571150" duration="593000" />
+      <workItem from="1732571050712" duration="929000" />
+      <workItem from="1732614993721" duration="4566000" />
+      <workItem from="1732647013554" duration="8889000" />
+      <workItem from="1732659907082" duration="22000" />
+      <workItem from="1732694392506" duration="264000" />
+      <workItem from="1732695734076" duration="432000" />
+      <workItem from="1732696341295" duration="31000" />
+      <workItem from="1732697388153" duration="1600000" />
+      <workItem from="1732699225429" duration="410000" />
+      <workItem from="1732807951779" duration="173000" />
+      <workItem from="1732890254130" duration="598000" />
+      <workItem from="1732996178237" duration="2581000" />
+      <workItem from="1733068292053" duration="8792000" />
+      <workItem from="1733220796998" duration="1358000" />
+      <workItem from="1733318836048" duration="91000" />
+      <workItem from="1733742758876" duration="197000" />
+      <workItem from="1733742973465" duration="54000" />
+      <workItem from="1733826127243" duration="3000" />
+      <workItem from="1733903377088" duration="179000" />
+      <workItem from="1733904683920" duration="150000" />
+      <workItem from="1734106693505" duration="3833000" />
+      <workItem from="1734133443967" duration="7042000" />
+      <workItem from="1734186493010" duration="4386000" />
+      <workItem from="1734230873573" duration="1276000" />
+      <workItem from="1734422219622" duration="4514000" />
+      <workItem from="1734427582730" duration="100000" />
+      <workItem from="1734431061821" duration="1194000" />
+      <workItem from="1734476608623" duration="1532000" />
+      <workItem from="1734870895896" duration="4665000" />
+      <workItem from="1734962451195" duration="1840000" />
+      <workItem from="1734965252951" duration="140000" />
+      <workItem from="1734968403167" duration="3131000" />
+      <workItem from="1734992609674" duration="697000" />
+      <workItem from="1734993349974" duration="2928000" />
+      <workItem from="1735000388878" duration="606000" />
+      <workItem from="1735113851657" duration="206000" />
+      <workItem from="1735137829876" duration="4424000" />
+      <workItem from="1735159424937" duration="4400000" />
+      <workItem from="1735163890825" duration="2076000" />
+      <workItem from="1735253260471" duration="2772000" />
+      <workItem from="1735344646555" duration="2262000" />
+      <workItem from="1735387696389" duration="6107000" />
+      <workItem from="1735394197875" duration="1314000" />
+      <workItem from="1735427845805" duration="9922000" />
+      <workItem from="1735509738530" duration="232000" />
+      <workItem from="1735555405748" duration="1082000" />
+      <workItem from="1735570295666" duration="439000" />
+      <workItem from="1735573770386" duration="2200000" />
+      <workItem from="1735580824391" duration="633000" />
+      <workItem from="1735633378509" duration="3878000" />
+      <workItem from="1735638681040" duration="1434000" />
+      <workItem from="1735640200602" duration="1026000" />
+      <workItem from="1735744357123" duration="3651000" />
+      <workItem from="1735772351237" duration="168000" />
+      <workItem from="1735838203781" duration="137000" />
+      <workItem from="1735902095806" duration="610000" />
+      <workItem from="1735914176565" duration="18000" />
+      <workItem from="1735929771901" duration="4715000" />
+      <workItem from="1736075410333" duration="262000" />
+      <workItem from="1736075899215" duration="326000" />
+      <workItem from="1736076330062" duration="166000" />
+      <workItem from="1736161648854" duration="245000" />
+      <workItem from="1736327464123" duration="84000" />
+      <workItem from="1736332209680" duration="141000" />
+      <workItem from="1736544257208" duration="707000" />
+      <workItem from="1736930780138" duration="11000" />
+      <workItem from="1737035803845" duration="509000" />
+      <workItem from="1737043216727" duration="611000" />
+      <workItem from="1737045206885" duration="9000" />
+      <workItem from="1737449343515" duration="4077000" />
+      <workItem from="1737932892956" duration="7214000" />
+      <workItem from="1737940208491" duration="1821000" />
+      <workItem from="1737942063881" duration="74000" />
+      <workItem from="1737942145849" duration="2965000" />
+      <workItem from="1737945150563" duration="211000" />
+      <workItem from="1737978773924" duration="2243000" />
+      <workItem from="1738074284783" duration="1193000" />
+      <workItem from="1738107356919" duration="3864000" />
+      <workItem from="1738176474617" duration="2318000" />
+      <workItem from="1738700972660" duration="406000" />
+      <workItem from="1740016861729" duration="2975000" />
+      <workItem from="1740058551121" duration="7199000" />
+      <workItem from="1740095594492" duration="2992000" />
+      <workItem from="1740141600347" duration="30479000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
